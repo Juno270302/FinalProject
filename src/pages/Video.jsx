@@ -4,8 +4,8 @@ import { IoReturnDownBack } from "react-icons/io5";
 
 const Video = () => {
   const use = useLocation();
-  const movie = use.state;
-  console.log(movie)
+  const movie = use.state;  // data send from ...
+
   return (
     <div className="w-full h-screen bg-[#212140] ">
       <div className="px-52 py-16 w-full h-full">

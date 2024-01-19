@@ -96,7 +96,7 @@ const UpdateAuthor = () => {
                       <label className="text-gray-400">Author Name</label>
                       <input
                         onChange={(e) => setName(e.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder={author?.name_cast}
                       />
@@ -105,7 +105,7 @@ const UpdateAuthor = () => {
                       <label className="text-gray-400">Gender</label>
                       <select
                         onChange={(e) => setGender(e.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder="Male or Female"
                       >
@@ -119,7 +119,7 @@ const UpdateAuthor = () => {
                       <label className="text-gray-400">Birthday</label>
                       <input
                         onChange={(e) => setBirthday(e.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder={author?.birthday}
                       />
@@ -128,7 +128,7 @@ const UpdateAuthor = () => {
                       <label className="text-gray-400">Place of Birth</label>
                       <input
                         onChange={(e) => setPob(e.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder={author?.pob}
                       />
@@ -140,9 +140,9 @@ const UpdateAuthor = () => {
                       <label className="text-gray-600">Image</label>
                       <label
                         htmlFor="file"
-                        className="border border-dashed h-[60px] flex items-center justify-center flex-col "
+                        className="border border-dashed h-[60px] bg-[#2E2439] flex items-center justify-center flex-col "
                       >
-                        <FaCloudUploadAlt className="text-purple-700 text-2xl" />
+                        <FaCloudUploadAlt className="text-[#F20000]/80 text-2xl" />
                         <div>Drag Your Image Here</div>
                       </label>
                       <input
@@ -167,7 +167,7 @@ const UpdateAuthor = () => {
 
                   <button
                     type="submit"
-                    className="w-full border border-white/70 py-3 mt-[30px] font-body bg-[#F20000]  rounded"
+                    className="w-full border border-white/70 py-3 mt-[30px] font-body bg-[#E0D5D5] text-[#F20000]  rounded"
                   >
                     Pusblish Movie
                   </button>

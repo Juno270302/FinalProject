@@ -7,34 +7,24 @@ import ShowMovie from "../components/ShowMovie";
 import { GrPowerReset } from "react-icons/gr";
 
 const MoviesSeries = () => {
-  const [movies, setMovies] = useState([]);
-  const [count, setCount] = useState(0);
-  const [search, setSearch] = useState("");
-  const [refresh, setRefresh] = useState(false);
-  const [genre, setGenre] = useState([]);
-  const [value, setValue] = useState("");
-  const [test, setTest] = useState(false);
-  console.log(movies)
+  const [movies, setMovies] = useState([]); //save All Movies in database
+  const [count, setCount] = useState(0); //Dung de tinh tong cac movies co trong database
+  const [search, setSearch] = useState(""); //Lay thong tin de search
+  const [genre, setGenre] = useState([]); //Save All genre in database
+  const [value, setValue] = useState(null); //Check genre to search
 
+  //get movies -> database
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, "movies"), (snapShot) => {
+    onSnapshot(collection(db, "movies"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach((doc) => {
         list.push({ id: doc.id, ...doc.data() });
       });
       setMovies(list);
-      setRefresh(false);
     });
+  }, []);
 
-    return () => {
-      unsub();
-    };
-  }, [refresh === true]);
-
-  useEffect(() => {
-    setCount(movies.length);
-  }, [movies]);
-
+  //get genres -> database
   useEffect(() => {
     onSnapshot(collection(db, "genres"), (snapShot) => {
       let list = [];
@@ -45,28 +35,16 @@ const MoviesSeries = () => {
     });
   }, [movies?.id]);
 
-  const SearchBlog = (e) => {
-    e.preventDefault();
+  //Tinh tổng có bao nhiêu bộ phim
+  useEffect(() => {
+    setCount(movies.length);
+  }, [movies]);
 
-    setMovies(
-      movies.filter((e) =>
-        e?.title.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  };
-
-  const handleSelect1 = (e) => {
+  //setValue
+  const handleSelect = (e) => {
     e.preventDefault();
     setValue(e.target.value);
-    setTest(true);
   };
-
-  useEffect(() => {
-    if (test) {
-      setMovies(movies.filter((e) => e.genre === value));
-    }
-    setTest(false);
-  }, [test === true]);
 
   return (
     <div className="bg-[#212140] h-screen w-full ">
@@ -79,10 +57,11 @@ const MoviesSeries = () => {
           </div>
           <div className="w-[30%] flex p-5 mx-5 ">
             <select
-              onChange={(e) => handleSelect1(e)}
+              onChange={(e) => handleSelect(e)}
               id="Category"
               class=" mx-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
+              <option>All</option>
               {genre.map((option) => (
                 <option value={option.key}>{option.key}</option>
               ))}
@@ -90,25 +69,30 @@ const MoviesSeries = () => {
           </div>
 
           <div className="flex justify-center space-x-5 ">
-            <form
-              onSubmit={SearchBlog}
-              className="py-5 space-x-5 w-full text-right"
-            >
+            <form className="py-5 space-x-5 w-full text-right">
               <input
-                className="py-2 px-5 rounded-xl w-[5  0%] "
+                className="py-2 px-5 rounded-xl w-[90%] "
                 onChange={(e) => setSearch(e.target.value)}
               />
             </form>
-            <button onClick={(e) => setRefresh(true)}>
-              <GrPowerReset className="text-3xl text-[#ff99be]" />
-            </button>
           </div>
         </div>
 
         <div className="ml-20 w-full">
-          {movies.map((item) => (
-            <ShowMovie item={item} />
-          ))}
+          {movies
+            .filter((e) =>
+              e.title.toLowerCase().includes(search.toLowerCase(search))
+            )
+            .filter((e) => {
+              if (value === "All" || value === null) {
+                return e;
+              } else {
+                return e.genre === value;
+              }
+            })
+            .map((item) => (
+              <ShowMovie item={item} />
+            ))}
         </div>
       </div>
     </div>

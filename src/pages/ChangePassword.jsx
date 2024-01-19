@@ -75,20 +75,20 @@ const ChangePassword = () => {
             >
               <input
                 onChange={(e) => setOldPassword(e.target.value)}
-                className="p-3 my-2 w-[300px] bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 w-[300px] bg-[#2E2439] rounded placeholder-gray-300"
                 type="password"
                 placeholder="Old Password"
               />
               <input
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="p-3 my-2 w-[300px] bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 w-[300px] bg-[#2E2439] rounded placeholder-gray-300"
                 type="password"
                 placeholder="New Password"
                 minLength="1"
               />
               <input
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="p-3 my-2 w-[300px] bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 w-[300px] bg-[#2E2439] rounded placeholder-gray-300"
                 type="password"
                 placeholder="Confirm Password"
                 minLength="1"

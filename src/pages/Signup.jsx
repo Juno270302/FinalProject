@@ -20,45 +20,45 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full h-screen border">
+    <div className="w-full h-full bg-[#212140]">
       <div className="w-full px-4 py-40">
-        <div className="max-w-[450px] h-[600px] mx-auto bg-[#352036]/40 rounded-3xl text-white">
+        <div className="max-w-[450px] h-[600px] mx-auto bg-[#553E58] rounded-3xl text-white">
           <div className="max-w-[320px] mx-auto py-16">
-            <h1 className="font-bold text-4xl text-[#352036]">Sign Up</h1>
+            <h1 className="font-bold text-4xl text-white">Sign Up</h1>
             <form
               onSubmit={handleSubmit}
               className="flex w-full flex-col py-4 "
             >
               <input
                 onChange={(e) => setName(e.target.value)}
-                className="p-3 my-2 bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 bg-[#2E2439] rounded placeholder-gray-400"
                 type="text"
                 placeholder="Username"
               />
               <input
                 onChange={(e) => setEmail(e.target.value)}
-                className="p-3 my-2 bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 bg-[#2E2439] rounded placeholder-gray-400"
                 type="email"
                 placeholder="Email"
               />
               <input
                 onChange={(e) => setPassword(e.target.value)}
-                className="p-3 my-2 bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 bg-[#2E2439] rounded placeholder-gray-400"
                 type="password"
                 placeholder="Password"
                 autoComplete="current-passowrd"
               />
               <button
                 type="submit"
-                className="bg-[#301933] py-3 my-6 rounded font-bold "
+                className="bg-[#E0D5D5] text-[#f20000] py-3 my-6 rounded font-bold "
               >
                 Sign Up
               </button>
               <p className="py-4">
-                <span className="text-gray-600">
+                <span className="text-gray-300">
                   Already subscribed to Movies?
                 </span>
-                <Link to="/login" className="font-bold text-xl text-[#352036]">
+                <Link to="/login" className="font-bold text-xl text-[#f20000]">
                   {" "}
                   Sign In
                 </Link>

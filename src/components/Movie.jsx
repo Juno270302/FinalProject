@@ -6,8 +6,8 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const Movie = () => {
   const [movies, setMovies] = useState([]);
-  console.log(movies);
 
+  //get movies -> database
   useEffect(() => {
     onSnapshot(collection(db, "movies"), (snapShot) => {
       let list = [];
@@ -18,6 +18,7 @@ const Movie = () => {
     });
   }, []);
 
+  //srollbar
   const slideLeft = () => {
     var slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 500;
@@ -29,11 +30,11 @@ const Movie = () => {
 
   return (
     <div className="text-black">
-      <h2 className="font-bold md:text-xl p-4 text-2xl">Popular Movies</h2>
+      <h2 className="font-bold p-4 text-2xl text-white">Popular Movies</h2>
       <div className="relative flex items-center group">
         <MdChevronLeft
           onClick={slideLeft}
-          className="bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
+          className="bg-white rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
           size={40}
         />
         <div

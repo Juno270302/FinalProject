@@ -83,7 +83,7 @@ const AddAuthor = () => {
                       <label className="text-gray-400">Author Name</label>
                       <input
                         onChange={(e) => setName(e.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder="David Denman"
                       />
@@ -92,7 +92,7 @@ const AddAuthor = () => {
                       <label className="text-gray-400">Gender</label>
                       <select
                         onChange={(e) => setGender(e?.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder="Male or Female"
                       >
@@ -107,7 +107,7 @@ const AddAuthor = () => {
                       <label className="text-gray-400">Birthday</label>
                       <input
                         onChange={(e) => setBirthday(e.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder="1973-07-25"
                       />
@@ -116,7 +116,7 @@ const AddAuthor = () => {
                       <label className="text-gray-400">Place of Birth</label>
                       <input
                         onChange={(e) => setPob(e.target.value)}
-                        className="py-3 bg-[#080A1A]/50 px-5 border border-gray-300 rounded text-white"
+                        className="py-3 bg-[#2E2439] px-5 border border-gray-300 rounded text-white"
                         type="text"
                         placeholder="Newport Beach, California, USA"
                       />
@@ -128,9 +128,9 @@ const AddAuthor = () => {
                       <label className="text-gray-600">Image</label>
                       <label
                         htmlFor="file"
-                        className="border border-dashed h-[60px] flex items-center justify-center flex-col "
+                        className="border border-dashed h-[60px] bg-[#2E2439] flex items-center justify-center flex-col "
                       >
-                        <FaCloudUploadAlt className="text-purple-700 text-2xl" />
+                        <FaCloudUploadAlt className="text-[#F20000]/80 text-2xl" />
                         <div>Drag Your Image Here</div>
                       </label>
                       <input
@@ -153,7 +153,7 @@ const AddAuthor = () => {
 
                   <button
                     type="submit"
-                    className="w-full border py-3 mt-[30px] font-body bg-[#F20000] border-white/70  rounded"
+                    className="w-full border py-3 mt-[30px] font-body bg-[#E0D5D5] text-[#f20000] border-white/70  rounded"
                   >
                     Pusblish Movie
                   </button>

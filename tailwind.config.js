@@ -3,9 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      fontFamily:{
-        body: ['Poppins']
-      }
+      fontFamily: {
+        body: ["Poppins"],
+        main: ["Roboto"],
+      },
     },
     screens: {
       "2xl": { max: "1535px" },

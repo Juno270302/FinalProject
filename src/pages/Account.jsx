@@ -129,7 +129,7 @@ const Account = () => {
                   <div className="w-full">
                     <p className="text-xs text-gray-300">Email</p>
                     <input
-                      className="p-3 my-2 w-[300px] bg-[#a199a4] rounded placeholder-black"
+                      className="p-3 my-2 w-[300px] bg-[#2E2439] rounded "
                       type="text"
                       value={users.email}
                       readOnly={false}
@@ -139,7 +139,7 @@ const Account = () => {
                     <p className="text-xs text-gray-300">Name</p>
                     <input
                       onChange={(e) => setUsernameInput(e.target.value)}
-                      className="p-3 my-2 w-[300px] bg-[#a199a4] rounded placeholder-black"
+                      className="p-3 my-2 w-[300px] bg-[#2E2439] rounded placeholder-gray-400"
                       type="text"
                       placeholder={users.username}
                     />
@@ -148,7 +148,7 @@ const Account = () => {
                     <p className="text-xs text-gray-300">Phone Number</p>
                     <input
                     onChange={(e) => setPhonenumberInput(e.target.value)}
-                    className="p-3 my-2 w-[300px] bg-[#a199a4] rounded placeholder-black"
+                    className="p-3 my-2 w-[300px] bg-[#2E2439] rounded placeholder-gray-400"
                     type="text"
                     placeholder={users.phonenumber}
                   />
@@ -157,7 +157,7 @@ const Account = () => {
                     <p className="text-xs text-gray-300">Address</p>
                     <input
                     onChange={(e) => setAddressInput(e.target.value)}
-                    className="p-3 my-2 w-[300px] bg-[#a199a4] rounded placeholder-black"
+                    className="p-3 my-2 w-[300px] bg-[#2E2439] rounded placeholder-gray-400"
                     type="text"
                     placeholder={users.address}
                   />

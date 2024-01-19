@@ -39,7 +39,9 @@ const RoleUser = ({ children }) => {
         <div className="w-full px-4 py-40">
           <div className="max-w-[950px] h-[50px] mx-auto bg-[#352036]/40 rounded-3xl text-white my-2 flex items-center justify-center space-x-2">
             <p className="text-center">Vui lòng bấm vào đây để đăng nhập</p>
-            <Link to="/login" className="text-red-700 font-bold text-xl">Login</Link>
+            <Link to="/login" className="text-red-700 font-bold text-xl">
+              Login
+            </Link>
           </div>
         </div>
       </div>

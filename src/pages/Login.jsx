@@ -19,12 +19,12 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-screen border">
+    <div className="w-full h-full bg-[#212140]">
       <div className="w-full px-4 py-40">
-        <div className="max-w-[450px] h-[600px] mx-auto bg-[#352036]/40 rounded-3xl text-white">
+        <div className="max-w-[450px] h-[600px] mx-auto bg-[#553E58] rounded-3xl text-white">
           <div className="max-w-[320px] mx-auto py-16">
             <div className="flex justify-between items-center">
-              <h1 className="font-bold text-4xl text-[#352036]">Login</h1>
+              <h1 className="font-bold text-4xl text-white">Login</h1>
               {error && (
                 <p className="text-red-600 font-bold">Please Login Again</p>
               )}
@@ -35,28 +35,28 @@ const Login = () => {
             >
               <input
                 onChange={(e) => setEmail(e.target.value)}
-                className="p-3 my-2 bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 bg-[#2E2439] border border-gray-300 rounded placeholder-gray-400"
                 type="email"
                 placeholder="Email"
               />
               <input
                 onChange={(e) => setPassword(e.target.value)}
-                className="p-3 my-2 bg-[#a199a4] rounded placeholder-black"
+                className="p-3 my-2 bg-[#2E2439] border border-gray-300 rounded placeholder-gray-400"
                 type="password"
                 placeholder="Password"
                 autoComplete="current-passowrd"
               />
               <button
                 type="submit"
-                className="bg-[#301933] py-3 my-6 rounded font-bold "
+                className="bg-[#E0D5D5] text-[#f20000] py-3 my-6 rounded font-body "
               >
                 Login
               </button>
               <p className="py-4 space-x-3">
-                <span className="text-gray-600">New to Movies?</span>
+                <span className="text-gray-300">New to Movies?</span>
                 <Link
                   to="/signup"
-                  className="font-bold text-xl text-[#352036]"
+                  className="font-bold text-xl text-[#f20000]"
                   onclick
                 >
                   Sign Up

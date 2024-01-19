@@ -4,16 +4,30 @@ import { useState } from "react";
 import icon from "../images/video-player.png";
 import { UserAuth } from "../context/AuthContext";
 import { Role } from "./Role";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
+import { IoExit } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logOut } = UserAuth();
   const navigate = useNavigate();
   const userInfo = Role();
   const [users, setUsers] = useState({});
+  const [data, setData] = useState();
+  console.log(data);
 
   useEffect(() => {
     setUsers(userInfo);
   }, [userInfo]);
+
+  const movieID = doc(db, "users", `${user?.uid}`);
+
+  //get userId -> database
+  useEffect(() => {
+    onSnapshot(movieID, (doc) => {
+      setData(doc.data());
+    });
+  }, [user?.uid]);
 
   const handleLogout = async () => {
     try {
@@ -25,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center z-[100] absolute text-white w-full py-4 justify-between">
+    <div className="flex items-center z-[100] absolute text-white w-full py-4 justify-between font-main">
       <Link to="/">
         <div className="flex items-center">
           <img className=" w-14 ml-3" src={icon} />
@@ -56,15 +70,15 @@ const Navbar = () => {
       {user?.email ? (
         <div className="flex items-center px-10">
           <Link to="/account">
-            <button className="text-[#ff99be] pr-4 text-lg font-bold mr-4">
-              Account
+            <button className="text-[#ff99be] text-lg font-bold ">
+              <img src={data?.img} className="h-[50px] w-[50px] rounded-full" />
             </button>
           </Link>
           <button
             onClick={handleLogout}
-            className="bg-[#ff99be] px-6 py-3 font-bold rounded-2xl text-lg cursor-pointer"
+            className="px-6 py-3 font-body rounded-2xl text-4xl cursor-pointer hover:text-[#f20000]"
           >
-            LogOut
+            <IoExit />
           </button>
         </div>
       ) : (
