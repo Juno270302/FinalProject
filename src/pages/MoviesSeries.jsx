@@ -58,7 +58,6 @@ const MoviesSeries = () => {
           <div className="w-[30%] flex p-5 mx-5 ">
             <select
               onChange={(e) => handleSelect(e)}
-              id="Category"
               class=" mx-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option>All</option>
@@ -87,11 +86,11 @@ const MoviesSeries = () => {
               if (value === "All" || value === null) {
                 return e;
               } else {
-                return e.genre === value;
+                return e.genre.includes(value);
               }
             })
-            .map((item) => (
-              <ShowMovie item={item} />
+            .map((item, index) => (
+              <ShowMovie item={item} index={index} />
             ))}
         </div>
       </div>

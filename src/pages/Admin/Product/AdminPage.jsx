@@ -74,20 +74,31 @@ const AdminPage = () => {
                       </td>
                       <td className=" text-center">{item?.genre}</td>
                       <td className=" text-center">{item?.release_date}</td>
-                      <td className=" text-center space-x-3">
+                      <td className=" text-center space-x-3 ">
                         <Link
                           to={`/admin/add/author/${item.id}`}
                           state={{ from: item }}
                         >
-                          <button className="text-2xl hover:text-[#F20000]">
+                          <button
+                            href="#"
+                            class="text-2xl hover:text-[#F20000] transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                            data-te-toggle="tooltip"
+                            title="Hello"
+                          >
                             <FaPlus />
                           </button>
                         </Link>
+
                         <Link
                           to={`/admin/update/product/${item.id}`}
                           state={{ from: item }}
                         >
-                          <button className="text-2xl hover:text-[#F20000]">
+                          <button
+                            href="#"
+                            class="text-2xl hover:text-[#F20000] transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                            data-te-toggle="tooltip"
+                            title="Hi! I'm tooltip"
+                          >
                             <FaEye />
                           </button>
                         </Link>

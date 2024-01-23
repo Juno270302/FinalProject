@@ -62,6 +62,11 @@ const Navbar = () => {
               Movies
             </button>
           </Link>
+          <Link to="authors">
+            <button className="text-[#ffffff] hover:text-[#fb9bbc] font-bold text-xl">
+              Authors
+            </button>
+          </Link>
           <button className="text-[#ffffff] hover:text-[#fb9bbc] font-bold text-xl">
             About Us
           </button>

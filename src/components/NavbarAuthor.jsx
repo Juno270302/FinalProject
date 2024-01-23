@@ -18,6 +18,7 @@ const NavbarAuthor = ({ movie, data }) => {
       const result = author?.filter((item) => item.id_cast !== passedID);
       await updateDoc(authorRef, {
         cast: result,
+        cast_name: result
       });
     } catch (error) {
       console.log(error);

@@ -11,6 +11,7 @@ import { db, storage } from "../../../firebase";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import Select from "react-select";
 
 const AddProduct = () => {
   const [file1, setFile1] = useState("");
@@ -30,6 +31,7 @@ const AddProduct = () => {
   const [discription, setDiscription] = useState("");
 
   const [genre, setGenre] = useState([]);
+  console.log(category);
 
   const navigate = useNavigate();
 

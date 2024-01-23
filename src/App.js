@@ -21,6 +21,8 @@ import AddAuthor from "./pages/Admin/Author/AddAuthor";
 import UpdateAuthor from "./pages/Admin/Author/UpdateAuthor";
 import AddAuthorToProduct from "./pages/Admin/Product/AddAuthorToProduct";
 import UserShow from "./pages/Admin/User/UserShow";
+import Authors from "./pages/Authors";
+import AuthorDetail from "./pages/AuthorDetail";
 
 function App() {
   return (
@@ -80,7 +82,7 @@ function App() {
             <Route path="addauthor" element={<AddAuthor />} />
             <Route path="update/product/:id" element={<UpdateProduct />} />
             <Route path="update/author/:id" element={<UpdateAuthor />} />
-            <Route path="add/author/:id" element={<AddAuthorToProduct />} /> 
+            <Route path="add/author/:id" element={<AddAuthorToProduct />} />
           </Route>
           <Route
             path="movies"
@@ -90,6 +92,11 @@ function App() {
               </RoleUser>
             }
           />
+          <Route path="authors">
+            <Route index element={<Authors />} />
+            <Route path="detail/:id" element={<AuthorDetail />} />
+          </Route>
+
           <Route
             path="detail/:id"
             element={

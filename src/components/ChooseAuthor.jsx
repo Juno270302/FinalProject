@@ -6,12 +6,11 @@ import NavbarAuthor from "./NavbarAuthor";
 const ChooseAuthor = ({ item, movie }) => {
   const [data, setData] = useState("");
   const [search, setSearch] = useState("");
-  console.log(search);
-
-  const movieID = doc(db, "movies", `${movie.id}`);
+  console.log(movie);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const movieID = doc(db, "movies", `${movie.id}`);
     await updateDoc(movieID, {
       cast: arrayUnion({
         id_cast: data?.id,
@@ -20,6 +19,24 @@ const ChooseAuthor = ({ item, movie }) => {
         gender: data?.gender,
         birthday: data?.birthday,
         pob: data?.pob,
+      }),
+    });
+
+    const authorID = doc(db, "authors", `${data?.id}`);
+    await updateDoc(authorID, {
+      movies: arrayUnion({
+        title: movie?.title,
+        genre: movie?.genre,
+        hours: movie?.hours,
+        release_date: movie?.release_date,
+        language: movie?.language,
+        overview: movie?.overview,
+        backdrop_path: movie?.backdrop_path,
+        poster_path: movie?.poster_path,
+        video: movie?.video,
+        chat: movie?.chat ?? "",
+        id: movie?.id,
+        cast: movie?.cast,
       }),
     });
   };
@@ -45,7 +62,8 @@ const ChooseAuthor = ({ item, movie }) => {
               </div>
             </div>
             <div className="w-full h-[650px] grid grid-cols-4 gap-6 overflow-y-scroll whitespace-nowrap scrollbar-hide scroll-smooth ">
-              {item?.filter((item) => {
+              {item
+                ?.filter((item) => {
                   return search.toLowerCase() === ""
                     ? item
                     : item.name_cast.toLowerCase().includes(search);
@@ -59,7 +77,9 @@ const ChooseAuthor = ({ item, movie }) => {
                             className="h-[200px] w-[200px]"
                             src={item.img_cast}
                           />
-                          <p className="text-[#F20000] font-main text-center">{item.name_cast}</p>
+                          <p className="text-[#F20000] font-main text-center">
+                            {item.name_cast}
+                          </p>
                         </div>
                       </button>
                     </form>
