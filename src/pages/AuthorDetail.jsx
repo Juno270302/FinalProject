@@ -1,10 +1,13 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { collection, onSnapshot } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { db } from "../firebase";
+import Test from "../components/Test";
 
 const AuthorDetail = () => {
   const use = useLocation();
   const movie = use.state.from;
-  console.log(movie);
+
   return (
     <div className="bg-[#212140] h-full w-full ">
       <div className="w-[90%] top-24 px-40 pt-20 mx-20 ">
@@ -48,19 +51,13 @@ const AuthorDetail = () => {
               <h1 className="font-main text-3xl">{movie?.name_cast}</h1>
               <div>
                 <p className="text-xl">Biography</p>
-                <p className="text-gray-400">{movie?.role}</p>
+                <p className="text-gray-400">{movie?.biography}</p>
               </div>
               <div>
                 <p className="font-main">Known For</p>
                 <p className="text-gray-400 flex flex-row space-x-8 py-3">
                   {movie?.movies?.map((item, index) => (
-                    <div className="text-clip overflow-hidden">
-                      <img
-                        className="w-[130px] h-[190px] "
-                        src={item.poster_path}
-                      />
-                      <p className="text-clip overflow-hidden ">{}</p>
-                    </div>
+                    <Test item={item} index={index} />
                   ))}
                 </p>
               </div>

@@ -9,7 +9,6 @@ const AddAuthorToProduct = () => {
   const movie = use.state.from;
   const [data, setData] = useState();
 
-  console.log(data);
 
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "authors"), (snapShot) => {

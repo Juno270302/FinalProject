@@ -24,10 +24,10 @@ const Authors = () => {
   };
 
   return (
-    <div className="bg-[#212140] h-screen w-full ">
-      <div className="absolute w-[90%] top-36 px-40 mx-16 ">
+    <div className="bg-[#212140] h-full w-full ">
+      <div className="w-[90%] py-36 px-40 mx-16 ">
         <div className="flex justify-between  ">
-          <div className="w-[30%] flex p-5 mx-5 "></div>
+          <div className="w-[30%] flex p-5  "></div>
 
           <div className="flex justify-center space-x-5 ">
             <form className="py-5 space-x-5 w-full text-right">
@@ -40,7 +40,7 @@ const Authors = () => {
         </div>
 
         <div className="ml-20 w-full">
-          <div className="w-full h-[650px] grid grid-cols-5 gap-6 overflow-y-scroll whitespace-nowrap scrollbar-hide scroll-smooth ">
+          <div className="w-full grid grid-cols-5 gap-6  ">
             {author
               ?.filter((item) => {
                 return search.toLowerCase() === ""
@@ -51,11 +51,13 @@ const Authors = () => {
               })
               ?.map((item, index) => {
                 return (
-                  
                   <div key={index}>
-                    <Link to={`/authors/detail/${item.id}`} state={{ from: item }}>
+                    <Link
+                      to={`/authors/detail/${item.id}`}
+                      state={{ from: item }}
+                    >
                       <button type="submit" onClick={() => setData(item)}>
-                        <div className="border-2 border-gray-800 p-4 bg-[#E0D5D5]">
+                        <div className="border-2 border-gray-800 p-4 bg-[#E0D5D5]/30 rounded-xl">
                           <img
                             className="h-[200px] w-[200px]"
                             src={item.img_cast}

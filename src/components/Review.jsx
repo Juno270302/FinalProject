@@ -7,13 +7,12 @@ import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
 const Review = ({ movie }) => {
+  console.log(movie);
   const [evaluate, setEvaluate] = useState();
   const [message, setMessage] = useState();
   const [users, setUsers] = useState();
-  const [chat, setChat] = useState([]);
   const { user } = UserAuth();
 
-  const movieID = doc(db, "movies", `${movie?.id}`);
   const userId = doc(db, "users", `${user?.uid}`);
 
   //get userId -> database
@@ -23,18 +22,14 @@ const Review = ({ movie }) => {
     });
   }, [user?.uid]);
 
-  useEffect(() => {
-    onSnapshot(movieID, (doc) => {
-      setChat(doc?.data().chat);
-    });
-  }, [user?.uid]);
+
 
   //update Message firm
   const submitHandle = async (e) => {
     e.preventDefault();
     const date = new Date().toLocaleString();
 
-    await updateDoc(movieID, {
+    await updateDoc(doc(db, "movies", `${movie?.id}`), {
       chat: arrayUnion({
         evaluate: evaluate,
         message: message,
@@ -59,7 +54,7 @@ const Review = ({ movie }) => {
         <div className="bg-[#212140] w-full h-full rounded-2xl flex flex-row px-20 py-20">
           <div className="basis-2/5 ">
             <form className="space-y-10 px-5" onSubmit={submitHandle}>
-              <p className="font-body text-xl">Reviews "{movie.title}"</p>
+              <p className="font-body text-xl">Reviews "{movie?.title}"</p>
               <p className="text-gray-400">
                 Write a review for this movie. It will be posted on this page.
                 lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -99,7 +94,7 @@ const Review = ({ movie }) => {
             <div className="px-10 ml-5 space-y-6">
               <h1 className="font-body text-xl ml-5">Reviews</h1>
               <div className="bg-[#080A1A]/90 w-full h-[500px] overflow-y-scroll scrollbar-hide scroll-smooth rounded">
-                {chat
+                {movie?.chat
                   ?.slice()
                   ?.reverse()
                   .map((item, index) => {

@@ -21,13 +21,21 @@ import Review from "../components/Review";
 
 const Detail = () => {
   const use = useLocation();
-  const movie = use.state.from; // data send from ...
+  const movies = use.state.from; // data send from ...
+  const [movie, setData] = useState();
 
   const [like, setLike] = useState(false);
   const [users, setUsers] = useState([]);
   const [save, setSave] = useState();
+  console.log(like)
 
   const { user } = UserAuth();
+
+  useEffect(() => {
+    onSnapshot(doc(db, "movies", `${movies.id}`), (doc) => {
+      setData({ id: doc.id, ...doc.data() });
+    });
+  }, []);
 
   const movieID = doc(db, "users", `${user?.uid}`);
 
@@ -41,7 +49,7 @@ const Detail = () => {
 
   //set favorite
   useEffect(() => {
-    const a = users?.filter((e) => e.id === movie.id);
+    const a = users?.filter((e) => e.id === movie?.id);
     setLike(a[0]?.like);
   }, [users]);
 
@@ -138,7 +146,7 @@ const Detail = () => {
               />
             </div>
             <div className="flex flex-col justify-center space-y-11 mb-32  h-full w-[65%] ">
-              <div className="font-body text-4xl">{movie.title}</div>
+              <div className="font-body text-4xl">{movie?.title}</div>
               <div className="flex space-x-9">
                 <p className="bg-[#E0D5D5] text-[#F20000] px-2">HD 4K</p>
                 <p>{movie?.genre}</p>
@@ -156,9 +164,9 @@ const Detail = () => {
               </div>
               <div className="flex  space-x-14 items-center">
                 <div>Language : {movie?.language}</div>
-                <Link to={`/video/${movie.id}`} state={movie}>
+                <Link to={`/video/${movie?.id}`} state={movie}>
                   <button
-                    onClick={() => historyShow(movie.id)}
+                    onClick={() => historyShow(movie?.id)}
                     className="rounded-full bg-[#E0D5D5] text-[#F20000] font-main py-2 px-12 flex space-x-2"
                   >
                     <CiPlay1 className="text-2xl" />
@@ -197,7 +205,7 @@ const Detail = () => {
                   id={"slider"}
                   className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative space-x-10"
                 >
-                  {movie.cast?.map((item) => (
+                  {movie?.cast?.map((item) => (
                     <ShowCast item={item} key={item.id} />
                   ))}
                 </div>
@@ -212,7 +220,7 @@ const Detail = () => {
           </div>
         </div>
         <div>
-          <Review movie = {movie}/>
+          <Review movie={movie}/>
         </div>
       </div>
     </div>
