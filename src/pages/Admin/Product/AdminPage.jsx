@@ -72,7 +72,13 @@ const AdminPage = () => {
                       <td className=" text-center overflow-auto scrollbar-hide">
                         {item?.title}
                       </td>
-                      <td className=" text-center">{item?.genre}</td>
+                      <td className=" text-center w-full ">
+                        {item?.genre?.slice(0, 3).map((e) => (
+                          <div>
+                            <div>{e},</div>
+                          </div>
+                        ))}
+                      </td>
                       <td className=" text-center">{item?.release_date}</td>
                       <td className=" text-center space-x-3 ">
                         <Link
@@ -83,7 +89,20 @@ const AdminPage = () => {
                             href="#"
                             class="text-2xl hover:text-[#F20000] transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
                             data-te-toggle="tooltip"
-                            title="Hello"
+                            title="Add Author for this movie"
+                          >
+                            <FaPlus />
+                          </button>
+                        </Link>
+                        <Link
+                          to={`/admin/add/genre/${item.id}`}
+                          state={{ from: item }}
+                        >
+                          <button
+                            href="#"
+                            class="text-2xl hover:text-[#F20000] transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                            data-te-toggle="tooltip"
+                            title="Add Genre for this movie"
                           >
                             <FaPlus />
                           </button>
@@ -97,7 +116,7 @@ const AdminPage = () => {
                             href="#"
                             class="text-2xl hover:text-[#F20000] transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
                             data-te-toggle="tooltip"
-                            title="Hi! I'm tooltip"
+                            title="Update"
                           >
                             <FaEye />
                           </button>

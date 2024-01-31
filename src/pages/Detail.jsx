@@ -27,7 +27,6 @@ const Detail = () => {
   const [like, setLike] = useState(false);
   const [users, setUsers] = useState([]);
   const [save, setSave] = useState();
-  console.log(like)
 
   const { user } = UserAuth();
 
@@ -149,7 +148,7 @@ const Detail = () => {
               <div className="font-body text-4xl">{movie?.title}</div>
               <div className="flex space-x-9">
                 <p className="bg-[#E0D5D5] text-[#F20000] px-2">HD 4K</p>
-                <p>{movie?.genre}</p>
+
                 <div className="flex space-x-2">
                   <MdDateRange className="mt-0.5 text-[#F20000]/90" />
                   <p>{movie?.release_date}</p>
@@ -158,6 +157,16 @@ const Detail = () => {
                   <IoTime className="mt-0.5 text-[#F20000]/90" />
                   <p>{movie?.hours}</p>
                 </div>
+              </div>
+              <div className="flex flex-row space-x-3">
+                <p className="">Genre : </p>
+                <p className=" flex flex-row space-x-3 max-w-[430px]">
+                  {movie?.genre?.map((e) => (
+                    <div>
+                      <div>{e},</div>
+                    </div>
+                  ))}
+                </p>
               </div>
               <div className="w-[50%]">
                 {truncateString(movie?.overview, 150)}
@@ -173,6 +182,7 @@ const Detail = () => {
                     <p>Watch</p>
                   </button>
                 </Link>
+
                 <button onClick={() => saveShow()}>
                   {like ? (
                     <FaHeart className="text-3xl text-[#F20000]" />
@@ -190,7 +200,7 @@ const Detail = () => {
               <p className="text-red-600 mt-1">
                 <IoPeople />{" "}
               </p>
-              <h1 className="font-body ">Casts</h1>
+              <h1 className="font-body ">Top Billed Casts</h1>
             </div>
 
             <div className="text-black">
@@ -208,6 +218,10 @@ const Detail = () => {
                   {movie?.cast?.map((item) => (
                     <ShowCast item={item} key={item.id} />
                   ))}
+                  <div className="w-[260px] h-[300px] inline-block cursor-pointer p-3 bg-[#0B0F29]  ">
+                    <p className="w-full h-[250px] flex "></p>
+                    <p className="text-center text-lg text-white">View More</p>
+                  </div>
                 </div>
 
                 <MdChevronRight
@@ -220,7 +234,7 @@ const Detail = () => {
           </div>
         </div>
         <div>
-          <Review movie={movie}/>
+          <Review movie={movie} />
         </div>
       </div>
     </div>

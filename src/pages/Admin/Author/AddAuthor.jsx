@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { db, storage } from "../../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const AddAuthor = () => {
@@ -13,6 +13,10 @@ const AddAuthor = () => {
   const [gender, setGender] = useState("");
   const [birthday, setBirthday] = useState("");
   const [pob, setPob] = useState("");
+  const [role, setRole] = useState("");
+  const [discription, setDiscription] = useState("");
+
+  const [roleAuthor, setRoleAuthor] = useState([]);
 
   const navigate = useNavigate();
 
@@ -51,6 +55,16 @@ const AddAuthor = () => {
     file && uploadFile();
   }, [file]);
 
+  useEffect(() => {
+    onSnapshot(collection(db, "role"), (snapShot) => {
+      let list = [];
+      snapShot.docs.forEach((doc) => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      setRoleAuthor(list);
+    });
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     navigate("/admin/authorshow");
@@ -61,6 +75,8 @@ const AddAuthor = () => {
         birthday: birthday,
         pob: pob,
         img_cast: fileSave,
+        biography: discription,
+        role: role,
       });
     } catch (error) {
       console.log(error);
@@ -123,9 +139,23 @@ const AddAuthor = () => {
                     </div>
                   </div>
 
+                  <div className="flex justify-between py-3 text-black">
+                    <div className="flex flex-col w-full ">
+                      <label className="text-gray-400 ">Movie Category</label>
+                      <select
+                        onChange={(e) => setRole(e.target.value)}
+                        className="py-3 rounded border text-white border-gray-300 bg-[#2E2439]"
+                      >
+                        {roleAuthor?.map((e) => (
+                          <option key={e.id}>{e.key}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
                   <div className="flex justify-between py-3">
                     <div className="flex flex-col w-full ">
-                      <label className="text-gray-600">Image</label>
+                      <label className="text-gray-400">Image</label>
                       <label
                         htmlFor="file"
                         className="border border-dashed h-[60px] bg-[#2E2439] flex items-center justify-center flex-col "
@@ -148,6 +178,17 @@ const AddAuthor = () => {
                           src={file ? URL.createObjectURL(file) : ""}
                         />
                       </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between py-3">
+                    <div className="flex flex-col w-full text-black">
+                      <label className="text-gray-400 ">Discription</label>
+                      <textarea
+                        onChange={(e) => setDiscription(e.target.value)}
+                        className="h-32 py-3 px-5 border text-white border-gray-300 rounded bg-[#2E2439]"
+                        placeholder="Make it Short and Sweets"
+                      />
                     </div>
                   </div>
 

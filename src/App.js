@@ -23,6 +23,9 @@ import AddAuthorToProduct from "./pages/Admin/Product/AddAuthorToProduct";
 import UserShow from "./pages/Admin/User/UserShow";
 import Authors from "./pages/Authors";
 import AuthorDetail from "./pages/AuthorDetail";
+import AddGenreToProduct from "./pages/Admin/Product/AddGenreToProduct";
+import GenreShow from "./pages/Admin/Genre/GenreShow";
+import AddGenre from "./pages/Admin/Genre/AddGenre";
 
 function App() {
   return (
@@ -79,10 +82,15 @@ function App() {
             <Route path="add" element={<AddProduct />} />
             <Route path="authorshow" element={<AuthorShow />} />
             <Route path="usershow" element={<UserShow />} />
+            <Route path="genreshow" element={<GenreShow />} />
             <Route path="addauthor" element={<AddAuthor />} />
+            <Route path="addgenre" element={<AddGenre />} />
             <Route path="update/product/:id" element={<UpdateProduct />} />
             <Route path="update/author/:id" element={<UpdateAuthor />} />
             <Route path="add/author/:id" element={<AddAuthorToProduct />} />
+            <Route path="add/genre/:id" element={<AddGenreToProduct />} />
+            
+            
           </Route>
           <Route
             path="movies"

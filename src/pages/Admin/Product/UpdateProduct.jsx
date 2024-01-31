@@ -1,4 +1,10 @@
-import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { db, storage } from "../../../firebase";
@@ -10,12 +16,15 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 const UpdateProduct = () => {
   const use = useLocation();
   const movie = use.state.from;
+console.log(movie)
+
   const [title, setTitle] = useState();
   const [hours, setHours] = useState();
   const [language, setLanguage] = useState();
   const [date, setDate] = useState();
   const [discription, setDiscription] = useState();
   const [category, setCategory] = useState();
+  const [limitAge ,setLimitAge] = useState();
   const navigate = useNavigate();
 
   const [file1, setFile1] = useState();
@@ -161,7 +170,7 @@ const UpdateProduct = () => {
         overview: discription ? discription : movie?.overview,
         poster_path: file1 ? file1Save : movie?.poster_path,
         backdrop_path: file2 ? file2Save : movie?.backdrop_path,
-        genre: category ? category : movie?.genre,
+        limit : limitAge ?? movie?.limit,
         video: video
           ? {
               titlevideo: video.name,
@@ -183,6 +192,13 @@ const UpdateProduct = () => {
     var slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft + 500;
   };
+
+  let a;
+  if(movie?.limit === "None"){
+    a = "Limit"
+  }else(
+    a = "None"
+  )
 
   return (
     <div className="w-full h-screen bg-[#212140]">
@@ -300,15 +316,22 @@ const UpdateProduct = () => {
                   <div className="flex justify-between py-3 text-black">
                     <div className="flex flex-col w-full ">
                       <label className="text-gray-400">Movie Category</label>
-                      <select
-                        onChange={(e) => setCategory(e.target.value)}
-                        onClick={handleSelect}
-                        className="py-3 rounded border  bg-[#2E2439] border-gray-300 text-white"
-                      >
-                        <option>{movie.genre}</option>
-                        {genre2?.map((e) => (
-                          <option key={e.id}>{e.key}</option>
+                      <div className="text-white flex flex-row space-x-2">
+                        {movie.genre.map((item) => (
+                          <div> {item},</div>
                         ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between py-3 text-black">
+                    <div className="flex flex-col w-full ">
+                      <label className="text-gray-400 ">Limit Age</label>
+                      <select
+                        onChange={(e) => setLimitAge(e.target.value)}
+                        className="py-3 rounded border text-white border-gray-300 bg-[#2E2439]"
+                      >
+                        <option>{movie?.limit}</option>
+                        <option>{a}</option>
                       </select>
                     </div>
                   </div>

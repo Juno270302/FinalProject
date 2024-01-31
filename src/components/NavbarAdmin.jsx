@@ -16,6 +16,10 @@ const NavbarAdmin = ({ bg }) => {
     backGround3 =
       "bg-[#E0D5D5] text-[#F20000] rounded font-body text-sm transitions flex gap-3 items-center p-4";
   }
+  if (bg === "bgGenreShow") {
+    backGround4 =
+      "bg-[#E0D5D5] text-[#F20000] rounded font-body text-sm transitions flex gap-3 items-center p-4";
+  }
 
   return (
     <div className="col-span-2 sticky bg-[#553E58] border border-gray-500 p-6 rounded-2xl xl:mb-0 mb-5 w-[300px]">
@@ -51,6 +55,17 @@ const NavbarAdmin = ({ bg }) => {
           >
             <ImProfile />
             User Management
+          </div>
+        </Link>
+        <Link to="/admin/genreshow">
+          <div
+            className={
+              backGround4 ??
+              "rounded font-body text-sm flex gap-3 items-center p-4 text-white hover:bg-[#212140]"
+            }
+          >
+            <ImProfile />
+            Genre Management
           </div>
         </Link>
       </div>

@@ -8,7 +8,6 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 const UpdateAuthor = () => {
   const use = useLocation();
   const author = use.state.from;
-  console.log(author);
 
   const [file, setFile] = useState("");
   const [fileSave, setFileSave] = useState("");
@@ -17,8 +16,14 @@ const UpdateAuthor = () => {
   const [name, setName] = useState();
   const [birthday, setBirthday] = useState();
   const [gender, setGender] = useState();
+  const [role, setRole] = useState();
+  const [role2, setRole2] = useState([])
+  const [discription, setDiscription] = useState();
+
+  const [roleAuthor, setRoleAuthor] = useState([]);
 
   const navigate = useNavigate();
+  console.log(author?.biography)
 
   let a;
   if (author?.gender === "Male") {
@@ -26,6 +31,20 @@ const UpdateAuthor = () => {
   } else {
     a = "Male";
   }
+
+  useEffect(() => {
+    onSnapshot(collection(db, "role"), (snapShot) => {
+      let list = [];
+      snapShot.docs.forEach((doc) => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      setRoleAuthor(list);
+    });
+  }, []);
+
+  const handleSelect = (e) => {
+    setRole2(roleAuthor.filter((e) => e.key !== author?.role));
+  };
 
   useEffect(() => {
     const uploadFile = () => {
@@ -73,8 +92,10 @@ const UpdateAuthor = () => {
         birthday: birthday ?? author?.birthday,
         pob: pob ?? author?.pob,
         img_cast: file ? fileSave : author?.img_cast,
+        biography: discription ?? author?.biography,
+        role: role ?? author?.role
       });
-      navigate("/");
+      navigate("/admin/authorshow");
     } catch (error) {
       console.log(error);
     }
@@ -135,9 +156,25 @@ const UpdateAuthor = () => {
                     </div>
                   </div>
 
+                  <div className="flex justify-between py-3 text-black">
+                    <div className="flex flex-col w-full ">
+                      <label className="text-gray-400 ">Movie Category</label>
+                      <select
+                        onChange={(e) => setRole(e.target.value)}
+                        onClick={handleSelect}
+                        className="py-3 rounded border text-white border-gray-300 bg-[#2E2439]"
+                      >
+                        <option>{author?.role}</option>
+                        {role2?.map((e) => (
+                          <option key={e.id}>{e.key}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
                   <div className="flex justify-between py-3">
                     <div className="flex flex-col w-full ">
-                      <label className="text-gray-600">Image</label>
+                      <label className="text-gray-400">Image</label>
                       <label
                         htmlFor="file"
                         className="border border-dashed h-[60px] bg-[#2E2439] flex items-center justify-center flex-col "
@@ -162,6 +199,17 @@ const UpdateAuthor = () => {
                           }
                         />
                       </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between py-3">
+                    <div className="flex flex-col w-full text-black">
+                      <label className="text-gray-400 ">Biography</label>
+                      <textarea
+                        onChange={(e) => setDiscription(e.target.value)}
+                        className="h-32 py-3 px-5 border text-white border-gray-300 rounded bg-[#2E2439]"
+                        placeholder={author?.biography}
+                      />
                     </div>
                   </div>
 

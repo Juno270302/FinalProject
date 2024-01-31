@@ -1,5 +1,6 @@
 import {
   addDoc,
+  arrayUnion,
   collection,
   doc,
   onSnapshot,
@@ -29,9 +30,9 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
   const [discription, setDiscription] = useState("");
+  const [limitAge, setLimitAge] = useState()
 
   const [genre, setGenre] = useState([]);
-  console.log(category);
 
   const navigate = useNavigate();
 
@@ -156,8 +157,9 @@ const AddProduct = () => {
     try {
       const docRef = await addDoc(collection(db, "movies"), {
         title: title,
-        genre: category,
+        genre: arrayUnion(category),
         hours: hours,
+        limit: limitAge ?? "None",
         release_date: date,
         language: language,
         overview: discription,
@@ -289,6 +291,19 @@ const AddProduct = () => {
                         {genre?.map((e) => (
                           <option key={e.id}>{e.key}</option>
                         ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between py-3 text-black">
+                    <div className="flex flex-col w-full ">
+                      <label className="text-gray-400 ">Limit Age</label>
+                      <select
+                        onChange={(e) => setLimitAge(e.target.value)}
+                        className="py-3 rounded border text-white border-gray-300 bg-[#2E2439]"
+                      >
+                        <option>None</option>
+                        <option>Limit</option>
                       </select>
                     </div>
                   </div>

@@ -7,27 +7,45 @@ const Authors = () => {
   const [author, setAuthor] = useState();
   const [data, setData] = useState();
   const [search, setSearch] = useState("");
-  console.log(data);
+  const [roleAuthor, setRoleAuthor] = useState([]);
+  const [role, setRole] = useState(null)
+  console.log(role)
 
   useEffect(() => {
     onSnapshot(collection(db, "authors"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach((doc) => {
-        list.push({ id: doc.id, ...doc.data() });
+        list.push({ id_cast: doc.id, ...doc.data() });
       });
       setAuthor(list);
     });
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    onSnapshot(collection(db, "role"), (snapShot) => {
+      let list = [];
+      snapShot.docs.forEach((doc) => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      setRoleAuthor(list);
+    });
+  }, []);
 
   return (
-    <div className="bg-[#212140] h-full w-full ">
-      <div className="w-[90%] py-36 px-40 mx-16 ">
-        <div className="flex justify-between  ">
-          <div className="w-[30%] flex p-5  "></div>
+    <div className="bg-[#212140] h-screen w-full">
+      <div className="w-[90%] h-full py-36 px-40 mx-16 ">
+        <div className="flex justify-between ml-20 ">
+          <div className="flex p-5 text-white float-right ">
+            
+          </div>
+          <div className="flex p-5 text-black float-right w-[1130px]">
+            <select className="w-full rounded" onChange={(e) => setRole(e.target.value)}>
+              <option>All</option>
+              {roleAuthor.map((item, index) => (
+                <option key={index}>{item.key}</option>
+              ))}
+            </select>
+          </div>
 
           <div className="flex justify-center space-x-5 ">
             <form className="py-5 space-x-5 w-full text-right">
@@ -42,6 +60,13 @@ const Authors = () => {
         <div className="ml-20 w-full">
           <div className="w-full grid grid-cols-5 gap-6  ">
             {author
+              ?.filter((item) => {
+                if (role === "All" || role === null) {
+                  return item;
+                } else {
+                  return item.role.includes(role);
+                }
+              })
               ?.filter((item) => {
                 return search.toLowerCase() === ""
                   ? item
