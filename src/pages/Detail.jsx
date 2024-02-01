@@ -218,10 +218,14 @@ const Detail = () => {
                   {movie?.cast?.map((item) => (
                     <ShowCast item={item} key={item.id} />
                   ))}
-                  <div className="w-[260px] h-[300px] inline-block cursor-pointer p-3 bg-[#0B0F29]  ">
-                    <p className="w-full h-[250px] flex "></p>
-                    <p className="text-center text-lg text-white">View More</p>
-                  </div>
+                  <Link to={`/Viewmoreauthor/${movie?.id}`} state={movie}>
+                    <div className="w-[260px] h-[300px] inline-block cursor-pointer p-3 bg-[#0B0F29]  ">
+                      <p className="w-full h-[250px] flex "></p>
+                      <p className="text-center text-lg text-white">
+                        View More
+                      </p>
+                    </div>
+                  </Link>
                 </div>
 
                 <MdChevronRight

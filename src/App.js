@@ -26,6 +26,7 @@ import AuthorDetail from "./pages/AuthorDetail";
 import AddGenreToProduct from "./pages/Admin/Product/AddGenreToProduct";
 import GenreShow from "./pages/Admin/Genre/GenreShow";
 import AddGenre from "./pages/Admin/Genre/AddGenre";
+import ViewMoreAuthor from "./pages/ViewMoreAuthor";
 
 function App() {
   return (
@@ -121,6 +122,7 @@ function App() {
               </RoleUser>
             }
           />
+          <Route path="Viewmoreauthor/:id" element={<ViewMoreAuthor />}/>
         </Route>
       </Routes>
     </AuthContextProvider>
