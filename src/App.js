@@ -90,8 +90,6 @@ function App() {
             <Route path="update/author/:id" element={<UpdateAuthor />} />
             <Route path="add/author/:id" element={<AddAuthorToProduct />} />
             <Route path="add/genre/:id" element={<AddGenreToProduct />} />
-            
-            
           </Route>
           <Route
             path="movies"
@@ -122,7 +120,7 @@ function App() {
               </RoleUser>
             }
           />
-          <Route path="Viewmoreauthor/:id" element={<ViewMoreAuthor />}/>
+          <Route path="Viewmoreauthor/:id" element={<ViewMoreAuthor />} />
         </Route>
       </Routes>
     </AuthContextProvider>

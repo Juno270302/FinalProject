@@ -78,7 +78,7 @@ const Authors = () => {
                 return (
                   <div key={index}>
                     <Link
-                      to={`/authors/detail/${item.id}`}
+                      to={`/authors/detail/${item.id_cast}`}
                       state={{ from: item }}
                     >
                       <button type="submit" onClick={() => setData(item)}>
