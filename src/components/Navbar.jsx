@@ -4,7 +4,7 @@ import { useState } from "react";
 import icon from "../images/video-player.png";
 import { UserAuth } from "../context/AuthContext";
 import { Role } from "./Role";
-import { doc, onSnapshot } from "firebase/firestore";
+import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { IoExit } from "react-icons/io5";
 
@@ -28,6 +28,15 @@ const Navbar = () => {
       setData(doc.data());
     });
   }, [user?.uid]);
+
+  useEffect(() => {
+    if (data?.member === "VIP") {
+      const a = new Date(data?.date_member.seconds * 1000);
+
+      const new_date = new Date();
+      console.log(a < new_date);
+    }
+  });
 
   const handleLogout = async () => {
     try {

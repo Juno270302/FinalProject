@@ -26,6 +26,7 @@ import AuthorDetail from "./pages/AuthorDetail";
 import AddGenreToProduct from "./pages/Admin/Product/AddGenreToProduct";
 import GenreShow from "./pages/Admin/Genre/GenreShow";
 import AddGenre from "./pages/Admin/Genre/AddGenre";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   return (
@@ -121,6 +122,7 @@ function App() {
               </RoleUser>
             }
           />
+          <Route path="checkout" element={<CheckOut />} />
         </Route>
       </Routes>
     </AuthContextProvider>

@@ -80,6 +80,9 @@ const MoviesSeries = () => {
         <div className="ml-20 w-full">
           {movies
             .filter((e) =>
+              e.license?.includes("None")
+            )
+            .filter((e) =>
               e.title.toLowerCase().includes(search.toLowerCase(search))
             )
             .filter((e) => {
