@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
 import { doc, deleteDoc } from "firebase/firestore";
 import NavbarAccount from "../../../components/NavbarAccount";
+import { TbCategory } from "react-icons/tb";
 import NavbarAdmin from "../../../components/NavbarAdmin";
 import { FaPlus } from "react-icons/fa";
 
@@ -104,7 +105,7 @@ const AdminPage = () => {
                             data-te-toggle="tooltip"
                             title="Add Genre for this movie"
                           >
-                            <FaPlus />
+                            <TbCategory />
                           </button>
                         </Link>
 

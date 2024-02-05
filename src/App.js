@@ -26,7 +26,11 @@ import AuthorDetail from "./pages/AuthorDetail";
 import AddGenreToProduct from "./pages/Admin/Product/AddGenreToProduct";
 import GenreShow from "./pages/Admin/Genre/GenreShow";
 import AddGenre from "./pages/Admin/Genre/AddGenre";
+<<<<<<< HEAD
 import CheckOut from "./pages/CheckOut";
+=======
+import ViewMoreAuthor from "./pages/ViewMoreAuthor";
+>>>>>>> 3727d3c1fc1c9790d32226bf9b4ecd73aa114d0a
 
 function App() {
   return (
@@ -90,8 +94,6 @@ function App() {
             <Route path="update/author/:id" element={<UpdateAuthor />} />
             <Route path="add/author/:id" element={<AddAuthorToProduct />} />
             <Route path="add/genre/:id" element={<AddGenreToProduct />} />
-            
-            
           </Route>
           <Route
             path="movies"
@@ -122,7 +124,11 @@ function App() {
               </RoleUser>
             }
           />
+<<<<<<< HEAD
           <Route path="checkout" element={<CheckOut />} />
+=======
+          <Route path="Viewmoreauthor/:id" element={<ViewMoreAuthor />} />
+>>>>>>> 3727d3c1fc1c9790d32226bf9b4ecd73aa114d0a
         </Route>
       </Routes>
     </AuthContextProvider>
